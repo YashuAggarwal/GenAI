@@ -1,4 +1,18 @@
-streamlit
-python-dotenv
-google-generativeai
-sqlalchemy
+# Combined requirements for all tasks in Module_7
+
+# Task 2: LLM Chat
+# Task 3: Data Augmentation
+# Task 4: Document Query
+# Task 5: Natural Language to SQL
+
+# Core dependencies
+streamlit>=1.32.0
+python-dotenv>=1.0.0
+pandas>=2.0.0
+sqlalchemy>=2.0.0
+
+# Google Gemini API (new package)
+google-genai>=0.2.0
+
+# Additional utilities
+protobuf>=4.21.0
