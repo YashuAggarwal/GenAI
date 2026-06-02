@@ -8,6 +8,7 @@ from typing import Optional
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
+from pathlib import Path
 
 
 class GeminiClient:
@@ -15,12 +16,15 @@ class GeminiClient:
     
     def __init__(self):
         """Initialize Gemini client with API key and model from environment variables."""
-        # Load environment variables from .env file
-        load_dotenv()
+        # Load environment variables from parent directory's .env file
+        current_dir = Path(__file__).parent
+        parent_dir = current_dir.parent
+        env_path = parent_dir / ".env"
+        load_dotenv(dotenv_path=env_path)
         
         # Get API key and model name from environment
-        self.api_key = os.getenv("GEMINI_API_KEY")
-        self.model_name = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+        self.api_key = os.getenv("GEMINI_API_KEY") or os.getenv("API_Key")
+        self.model_name = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
         
         if not self.api_key:
             raise ValueError(
@@ -47,19 +51,36 @@ class GeminiClient:
             # Construct prompt for Gemini
             prompt = self._build_prompt(natural_language_query, database_schema)
             
-            # Generate SQL using Gemini
-            response = self.client.models.generate_content(
-                model=self.model_name,
-                contents=prompt
-            )
-            
-            # Extract SQL from response
-            sql_query = self._extract_sql(response.text)
-            
-            return sql_query
+            # Generate SQL using Gemini with retry logic
+            import time
+            for attempt in range(3):
+                try:
+                    response = self.client.models.generate_content(
+                        model=self.model_name,
+                        contents=prompt
+                    )
+                    
+                    # Extract SQL from response
+                    sql_query = self._extract_sql(response.text)
+                    return sql_query
+                    
+                except Exception as retry_error:
+                    error_str = str(retry_error)
+                    if "429" in error_str or "RESOURCE_EXHAUSTED" in error_str:
+                        if attempt < 2:
+                            wait_time = 2 ** attempt
+                            print(f"Rate limit hit, retrying in {wait_time}s...")
+                            time.sleep(wait_time)
+                        else:
+                            raise
+                    else:
+                        raise
             
         except Exception as e:
+            import traceback
+            error_details = traceback.format_exc()
             print(f"✗ Error generating SQL: {e}")
+            print(f"✗ Full error: {error_details}")
             return None
     
     def _build_prompt(self, natural_language_query: str, database_schema: str) -> str:
