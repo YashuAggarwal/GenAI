@@ -1,0 +1,83 @@
+## Prompt 1: Distributed SQL Query Optimization
+Context:
+A fact table containing over 1 billion rows is queried in a distributed
+cloud data warehouse (Databricks / Snowflake). The table is partitioned
+by event_date, and the query execution time is significantly high.
+
+Role:
+Act as a principal data engineer with deep expertise in distributed SQL
+execution engines, cost-based optimizers, and large-scale data warehouses.
+
+Task:
+Rewrite the provided SQL query to improve performance by reducing data scanned,
+minimizing shuffle operations, and optimizing join execution.
+
+Constraints:
+- Preserve exact query semantics and results
+- Use only query-level optimizations
+- Assume a distributed compute environment
+- Focus strictly on performance improvements
+
+Format:
+Return:
+1. Optimized SQL query
+2. Explanation mapped to:
+   - Partition pruning
+   - Join strategy (broadcast vs shuffle)
+   - Aggregation and filter pushdown optimizations
+
+
+
+## Prompt 2: Query Performance Diagnosis & Optimization
+Context:
+An analytical SQL query executed on a multi-terabyte fact table causes
+full table scans, excessive shuffle, and memory spills during execution.
+
+Role:
+You are a distributed query execution engine expert specializing in
+performance tuning for Databricks and Snowflake.
+
+Task:
+Diagnose the root causes of the performance issues and recommend
+SQL-level optimizations to improve execution efficiency.
+
+Constraints:
+- No schema or table layout changes allowed
+- No change to business logic or query results
+- Recommendations must be query-level only
+
+Format:
+Return JSON:
+{
+  "bottlenecks": [],
+  "root_causes": [],
+  "sql_optimizations": [],
+  "execution_engine_impact": []
+}
+
+
+
+## Prompt 3: Cost-Efficient Optimization in Distributed Warehouses
+Context:
+A daily aggregation query runs on a large fact table in a distributed
+data warehouse environment. The workload is read-heavy and cost-sensitive.
+
+Role:
+Act as a senior data engineer focused on performance and cost optimization
+in large-scale analytics systems.
+
+Task:
+Optimize the SQL query to improve runtime performance while minimizing
+compute cost.
+
+Constraints:
+- No data reprocessing or schema changes
+- Preserve query correctness
+- Assume distributed execution with autoscaling
+
+Format:
+Provide:
+- Optimized SQL query
+- List of applied optimizations
+- Estimated performance impact (Low / Medium / High)
+- Estimated cost impact (Low / Medium / High)

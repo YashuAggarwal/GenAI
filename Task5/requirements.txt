@@ -1,0 +1,17 @@
+# Core dependencies for Natural Language to SQL application
+
+# Streamlit for web UI
+streamlit>=1.32.0
+
+# Google Generative AI SDK for Gemini API (new package)
+google-genai>=0.2.0
+
+# Environment variable management
+python-dotenv>=1.0.0
+
+# Database and data manipulation
+pandas>=2.0.0
+sqlalchemy>=2.0.0
+
+# Additional utilities
+protobuf>=4.21.0

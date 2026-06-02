@@ -1,0 +1,6 @@
+customer_id,name,city,product,amount,sale_date
+101,Rahul Verma,Mumbai,Laptop,45000,2024-01-15
+102,Sneha Patel,Delhi,Smartphone,28000,2024-01-20
+103,Vikram Singh,Bangalore,Tablet,35000,2024-02-05
+104,Anjali Reddy,Hyderabad,Headphones,3500,2024-02-12
+105,Amit Kumar,Chennai,Smart Watch,12000,2024-02-28

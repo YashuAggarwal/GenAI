@@ -1,0 +1,16 @@
+name,age,email,city,occupation,purchase_amount
+John Smith,28,john.smith@email.com,New York,Software Engineer,1200
+Emma Johnson,35,emma.j@email.com,Los Angeles,Marketing Manager,850
+Michael Brown,42,mbrown@email.com,Chicago,Data Analyst,1500
+Sarah Davis,31,sarah.davis@email.com,Houston,Product Designer,920
+David Wilson,29,d.wilson@email.com,Phoenix,Sales Executive,1100
+Sophia Martinez,31,sophia.m@email.com,Miami,UX Designer,950
+David Lee,26,dlee@email.com,San Francisco,Product Manager,1800
+Sarah Connor,45,s.connor@email.com,Austin,Cyber Security Specialist,2100
+James Wilson,50,james.wilson@email.com,Seattle,Project Manager,620
+Olivia Taylor,29,otaylor@email.com,Boston,HR Specialist,450
+Daniel Kim,33,daniel.kim@email.com,Denver,Financial Analyst,1350
+Isabella Garcia,24,igarcia@email.com,Houston,Graphic Designer,300
+William Davis,38,william.d@email.com,Atlanta,Sales Director,1750
+Emily Chen,27,emily.c@email.com,Portland,Environmental Scientist,800
+Marcus Thompson,41,mthompson@email.com,Chicago,Operations Manager,1150
